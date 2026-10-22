@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Ramat Portfolio Admin Dashboard"
+    >
+
+    <title>
+        Ramat Portfolio | Admin
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- LOGIN -->
+
+<div
+    id="loginScreen"
+    class="screen"
+>
+
+    <div class="login-card">
+
+        <div class="brand">
+            Ramat<span>.</span>
+        </div>
+
+        <p class="eyebrow">
+            PORTFOLIO ADMIN
+        </p>
+
+        <h1>
+            Welcome back
+        </h1>
+
+        <p class="muted">
+            Sign in to manage your portfolio.
+        </p>
+
+
+        <form id="loginForm">
+
+            <label>
+
+                Username
+
+                <input
+                    id="username"
+                    type="text"
+                    autocomplete="username"
+                    required
+                >
+
+            </label>
+
+
+            <label>
+
+                Password
+
+                <input
+                    id="password"
+                    type="password"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </label>
+
+
+            <button
+                class="button primary full"
+                type="submit"
+            >
+                Sign In
+            </button>
+
+
+            <p
+                id="loginMessage"
+                class="form-message"
+            ></p>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- ADMIN APP -->
+
+<div
+    id="adminApp"
+    class="admin-app hidden"
+>
+
+
+    <!-- SIDEBAR -->
+
+    <aside
+        id="sidebar"
+        class="admin-sidebar"
+    >
+
+        <div class="sidebar-brand">
+
+            <div class="brand">
+                Ramat<span>.</span>
+            </div>
+
+            <button
+                id="closeSidebar"
+                class="icon-button mobile-only"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <nav class="admin-nav">
+
+            <button
+                class="nav-item active"
+                data-view="dashboard"
+            >
+                Dashboard
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-view="projects"
+            >
+                Projects
+            </button>
+
+            <button 
+                class="nav-item" 
+                data-view="certifications"  
+            >
+                Certifications
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-view="skills"
+            >
+                Skills
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-view="experience"
+            >
+                Experience
+            </button>
+
+
+            
+            <button class="nav-item" data-view="cv">
+            Manage CV
+            </button>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a
+                href="../index.html"
+                target="_blank"
+                class="view-site"
+            >
+                View Portfolio ↗
+            </a>
+
+
+            <button
+                id="logoutButton"
+                class="logout-button"
+                type="button"
+            >
+                Log Out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <div
+        id="sidebarOverlay"
+        class="sidebar-overlay"
+    ></div>
+
+
+
+    <!-- MAIN -->
+
+    <main class="admin-main">
+
+
+        <header class="topbar">
+
+            <button
+                id="openSidebar"
+                class="icon-button mobile-only"
+                type="button"
+            >
+                ☰
+            </button>
+
+
+            <div>
+
+                <p class="eyebrow">
+                    PORTFOLIO MANAGEMENT
+                </p>
+
+                <h1 id="pageTitle">
+                    Dashboard
+                </h1>
+
+            </div>
+
+
+            <div
+                id="topbarUser"
+                class="topbar-user"
+            ></div>
+
+        </header>
+
+
+
+        <!-- DASHBOARD -->
+
+        <section
+            id="dashboardView"
+            class="view active-view"
+        >
+
+            <div
+                id="statsGrid"
+                class="stats-grid"
+            ></div>
+
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            RECENT WORK
+                        </p>
+
+                        <h2>
+                            Projects
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        class="button primary"
+                        data-open-form="project"
+                    >
+                        + Add Project
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="dashboardProjects"
+                    class="table-wrap"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PROJECTS -->
+
+        <section
+            id="projectsView"
+            class="view"
+        >
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            PORTFOLIO
+                        </p>
+
+                        <h2>
+                            Manage Projects
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        class="button primary"
+                        data-open-form="project"
+                    >
+                        + Add Project
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="projectsTable"
+                    class="table-wrap"
+                ></div>
+
+            </div>
+
+        </section>
+
+        <!-- CERTIFICATIONS -->
+        <section id="certificationsView" class="view">
+            <div class="content-card">
+              <div class="card-header">
+                <div>
+                    <p class="eyebrow">PROFESSIONAL DEVELOPMENT</p>
+                    <h2>Manage Certifications</h2>
+                </div>
+                <button
+                    class="button primary"
+                    type="button"
+                    onclick="openForm('certification')"
+                >
+                    Add Certification
+                </button>
+               </div>
+
+                <p>Add, update, and remove certificates displayed on your About page.</p>
+                <div id="certificationsTable"></div>
+            </div>
+            </section> 
+
+
+        
+        <!-- CV MANAGEMENT VIEW -->
+        <section id="cvView" class="view">
+        <div class="content-card" id="cvManagement">
+            <div class="card-header">
+            <div>
+                <p class="eyebrow">PROFESSIONAL PROFILE</p>
+                <h2>Manage My CV</h2>
+            </div>
+            </div>
+
+            <p>Upload a new PDF to replace the CV displayed on your home page.</p>
+
+            <form id="cvUploadForm">
+            <label for="cvFile">Choose your latest CV (PDF, maximum 5 MB)</label>
+            <input
+                type="file"
+                id="cvFile"
+                accept="application/pdf,.pdf"
+                required
+            />
+
+            <button type="submit" id="uploadCVButton" class="button primary">
+                Upload New CV
+            </button>
+            </form>
+
+            <p id="adminCVStatus" role="status"></p>
+
+            <p>
+            <a
+                id="adminViewCV"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                hidden
+            >View currently published CV</a>
+            </p>
+        </div>
+        </section>
+
+
+
+
+        <!-- SKILLS -->
+
+        <section
+            id="skillsView"
+            class="view"
+        >
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            TOOLKIT
+                        </p>
+
+                        <h2>
+                            Manage Skills
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        class="button primary"
+                        data-open-form="skill"
+                    >
+                        + Add Skill
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="skillsTable"
+                    class="table-wrap"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- EXPERIENCE -->
+
+        <section
+            id="experienceView"
+            class="view"
+        >
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            CAREER
+                        </p>
+
+                        <h2>
+                            Manage Experience
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        class="button primary"
+                        data-open-form="experience"
+                    >
+                        + Add Experience
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="experienceTable"
+                    class="table-wrap"
+                ></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- MODAL -->
+
+<div
+    id="modal"
+    class="modal hidden"
+    aria-hidden="true"
+>
+
+    <div
+        class="modal-overlay"
+        data-close-modal
+    ></div>
+
+
+    <div class="modal-card">
+
+        <button
+            id="closeModal"
+            class="close-modal"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <div id="modalBody"></div>
+
+    </div>
+
+</div>
+
+
+
+<script src="admin.js"></script>
+
+</body>
+
+</html>
